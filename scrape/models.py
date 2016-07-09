@@ -4,4 +4,4 @@ from django.db import models
 
 # Create your models here.
 class Amazon_Url(models.Model):
-	amazon_url = models.CharField(max_length=100)
+	amazon_url = models.URLField(max_length=100)
