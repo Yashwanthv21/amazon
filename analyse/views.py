@@ -9,5 +9,6 @@ from .models import Amazon_Analyse
 def analyse_data(request):
 	if request.method == 'GET':
 		q = Amazon_Analyse()
-		q.analyse_class()
+		picc = q.analyse_class()
+		return  render(request, 'index.html', {'picc': picc})
 

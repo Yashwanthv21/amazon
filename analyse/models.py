@@ -8,18 +8,18 @@ from nltk.text import Text
 import sys
 import collections
 import io
-import timeit
+
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 # Create your models here.
 
 class Amazon_Analyse(models.Model):
 	def analyse_class(self):
 		
-		start = timeit.default_timer()
+		#start = timeit.default_timer()
 		sid = SentimentIntensityAnalyzer()
 		reload(sys)
 		sys.setdefaultencoding("utf-8")
-		m = Text(nltk.corpus.gutenberg.words('/home/raja/Documents/NLP/spell/amazon/userReviews.txt'))
+		m = Text(nltk.corpus.gutenberg.words('userReviews.txt'))
 
 		specs = ['product','battery','price','weight','touch','heat','slow','performance','ram']
 
@@ -37,9 +37,9 @@ class Amazon_Analyse(models.Model):
 		dictionary = collections.defaultdict(lambda : 0)
 		for token in file:
 			dictionary[token[:-1]] = 1
-		print dictionary
+		#print dictionary
 		#print sentimentfile
-
+		pic = []
 		for res in specs :
 			fileconcord  = open(res+'.txt','r')
 			sent_pol = []
@@ -56,11 +56,12 @@ class Amazon_Analyse(models.Model):
 					print line
 				sent_pol.append( sid.polarity_scores(line)['compound'])
 			print res
-
-			print sum(1 for i in sent_pol if i>0)*1.0/len(sent_pol)
-			print sum(i for i in sent_pol )/len(sent_pol)
+			pic.append(res)
+			xx = sum(1 for i in sent_pol if i>0)*1.0/len(sent_pol)
+			print xx
+			pic.append(xx)
+			#print sum(i for i in sent_pol )/len(sent_pol)
 			#print sent_pol
 			print
-		stop = timeit.default_timer()
-
-		print stop - start 
+		
+		return pic

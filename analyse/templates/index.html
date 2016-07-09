@@ -1,0 +1,9 @@
+{% load staticfiles %}
+
+<form action="/scrape/data/" method="post">
+	{% csrf_token %}	
+	{% for res in picc %}
+		<li>{{ res }}</li>
+	{% endfor %}
+	<button type="Finish" value="Finish">Finish</button>	
+</form>
