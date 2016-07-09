@@ -16,6 +16,8 @@ def get_data(request):
             # redirect to a new URL:
             #name_obj = Amazon_Url.objects.create(url=form.cleaned_data['url'] )
             url = form.cleaned_data['url']
+            q = Amazon_Url()
+            q.fun(url)
             print 'Url is', url
             return HttpResponseRedirect('/thanks/')
 
