@@ -15,7 +15,7 @@ userReviewsPage = userReviewsPage[1]
 while (userReviewsPage != "http://www.amazon.in" ) { 
 
 	allReviews <- read_html(userReviewsPage);
-	capture.output( allReviews %>%  html_nodes(".review-text")  %>%  html_text(),file="userReviews_micromax.txt", append=TRUE)
+	capture.output( allReviews %>%  html_nodes(".review-text")  %>%  html_text(),file="userReviews.txt", append=TRUE)
 
 	userReviewsPage = allReviews %>% html_nodes(".a-last a") %>% html_attr("href") 
 	userReviewsPage = paste("http://www.amazon.in",userReviewsPage,sep="")

@@ -19,7 +19,7 @@ class Amazon_Analyse(models.Model):
 		sid = SentimentIntensityAnalyzer()
 		reload(sys)
 		sys.setdefaultencoding("utf-8")
-		m = Text(nltk.corpus.gutenberg.words('userReviews.txt'))
+		m = Text(nltk.corpus.gutenberg.words('/home/yashwanth/Documents/python/amazon/userReviews.txt'))
 
 		specs = ['product','battery','price','weight','touch','heat','slow','performance','ram']
 
@@ -56,10 +56,9 @@ class Amazon_Analyse(models.Model):
 					print line
 				sent_pol.append( sid.polarity_scores(line)['compound'])
 			print res
-			pic.append(res)
 			xx = sum(1 for i in sent_pol if i>0)*1.0/len(sent_pol)
 			print xx
-			pic.append(xx)
+			pic.append((res,round(xx,1) * 10))
 			#print sum(i for i in sent_pol )/len(sent_pol)
 			#print sent_pol
 			print
