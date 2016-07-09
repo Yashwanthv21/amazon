@@ -14,7 +14,7 @@ class Amazon_Url(models.Model):
 		path2script = 'specs-amazon.R'
 
 		# Variable number of args in a list
-		args = ['http://www.amazon.in/Micromax-Bolt-S301-charger-earphone/dp/B012ACW0ZI/ref=sr_1_7?ie=UTF8&qid=1466446343&sr=8-7&keywords=celkon']
+		args = [url]
 
 		# Build subprocess command
 		cmd = [command, path2script] + args

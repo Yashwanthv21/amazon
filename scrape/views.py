@@ -19,7 +19,7 @@ def get_data(request):
             q = Amazon_Url()
             q.fun(url)
             print 'Url is', url
-            return HttpResponseRedirect('/thanks/')
+            return HttpResponseRedirect('/analyse/sample/')
 
     # if a GET (or any other method) we'll create a blank form
     else:
