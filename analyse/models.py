@@ -21,7 +21,7 @@ class Amazon_Analyse(models.Model):
 		sys.setdefaultencoding("utf-8")
 		m = Text(nltk.corpus.gutenberg.words('/home/yashwanth/Documents/python/amazon/userReviews.txt'))
 
-		specs = ['product','battery','price','weight','touch','heat','slow','performance','ram']
+		specs = ['camera','performance','battery','look','feel','money','sound','network','storage','software']
 
 		for res in specs:
 
