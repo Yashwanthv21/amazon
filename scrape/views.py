@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 
 from .forms import ScrapeForm
-#from .models import Name
+from .models import Amazon_Url
 
 def get_data(request):
     #if this is a POST request we need to process the form data
@@ -14,8 +14,9 @@ def get_data(request):
             # process the data in form.cleaned_data as required
             # ...
             # redirect to a new URL:
-            name_obj = Name.objects.create(your_name=form.cleaned_data['your_name'] )
-            print 'your name is', name_obj.your_name
+            #name_obj = Amazon_Url.objects.create(url=form.cleaned_data['url'] )
+            url = form.cleaned_data['url']
+            print 'Url is', url
             return HttpResponseRedirect('/thanks/')
 
     # if a GET (or any other method) we'll create a blank form
