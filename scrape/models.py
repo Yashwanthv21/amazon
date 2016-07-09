@@ -18,6 +18,6 @@ class Amazon_Url(models.Model):
 
 		# Build subprocess command
 		cmd = [command, path2script] + args
-
+		open('userReviews.txt', 'w').close()
 		# check_output will run the command and store to result
 		x = subprocess.call(cmd, universal_newlines=True)
