@@ -1,5 +1,5 @@
 from __future__ import unicode_literals
-
+import os 
 from django.db import models
 import math
 import nltk
@@ -19,7 +19,8 @@ class Amazon_Analyse(models.Model):
 		sid = SentimentIntensityAnalyzer()
 		reload(sys)
 		sys.setdefaultencoding("utf-8")
-		m = Text(nltk.corpus.gutenberg.words('userReviews.txt'))
+		path = os.getcwd()
+		m = Text(nltk.corpus.gutenberg.words(path + '/userReviews_micromax.txt'))
 
 		specs = ['camera','performance','battery','look','feel','money','sound','network','storage','software']
 
@@ -31,7 +32,8 @@ class Amazon_Analyse(models.Model):
 			m.concordance(res, 200, sys.maxint)
 			fileconcord.close()
 			sys.stdout = tmpout
-
+		
+		
 		file = open('sentimentwords.txt')
 
 		dictionary = collections.defaultdict(lambda : 0)
