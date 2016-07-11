@@ -1,0 +1,89 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1">
+          <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+          <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script> 
+          <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.6/Chart.bundle.min.js" ></script>
+          
+     <style type="text/css">
+     	.container
+     	{
+     		border-radius: 25px;
+		    border: 2px solid black;
+		    padding: 20px; 
+     	}
+
+
+     </style>
+</head>
+<body >
+	
+		<div class="container">
+              <div class="row">
+                  <div class="col-md-8" >
+               			<form action="form_action.asp">
+						{% for spec,sent in picc %}
+						<input type="radio" name="optradio" onclick = "myFunction()" value={{spec}} id = {{sent}}>  {{spec}}<br>
+						{% endfor %}
+
+						
+						
+						</form>
+                  </div>
+                  <div  class="col-md-4" >
+                    <h2 id ="heading" >Select any item </h2>	
+					<canvas id="gui" width="500" height="100px"></canvas>
+                  </div>
+              </div>
+          </div>
+
+
+
+<script>
+function myFunction() {
+
+    var coffee = document.forms[0];
+    
+    var i;
+    for (i = 0; i < coffee.length; i++) {
+        if (coffee[i].checked) {
+         	//document.getElementById("order").value = coffee[i].id
+         	document.getElementById("heading").innerHTML = coffee[i].value
+			var value = coffee[i].id;
+			var ctx = $("#gui");
+			var myChart = new Chart(ctx, {
+			    type: 'doughnut',
+			    data : {
+			    labels: [
+			        "Positive",
+			        "Negative"
+			    ],
+			    datasets: [
+			        {
+			            data: [value, 10-value],
+			            backgroundColor: [
+			                "#5cd65c",
+			                "#ff4d4d"
+			            ],
+			            hoverBackgroundColor: [
+			                "#2eb82e",
+			                "#ff1a1a"
+			            ]
+			        }]
+			}
+			});  
+        }
+    }
+    
+
+}
+</script>
+
+</body>
+</html>
