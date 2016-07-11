@@ -16,29 +16,31 @@
      	{
      		border-radius: 25px;
 		    border: 2px solid black;
-		    padding: 20px; 
+		    padding: 40px; 
      	}
 
 
      </style>
 </head>
 <body >
-	
+		
 		<div class="container">
               <div class="row">
-                  <div class="col-md-8" >
+                  <div class="col-md-4" >
                			<form action="form_action.asp">
 						{% for spec,sent in picc %}
-						<input type="radio" name="optradio" onclick = "myFunction()" value={{spec}} id = {{sent}}>  {{spec}}<br>
+						<label><input type="radio" name="optradio" onclick = "myFunction()" value={{spec}} id = {{sent}}>  {{spec}}</label>
+						<hr></hr>
 						{% endfor %}
 
 						
 						
 						</form>
                   </div>
-                  <div  class="col-md-4" >
-                    <h2 id ="heading" >Select any item </h2>	
-					<canvas id="gui" width="500" height="100px"></canvas>
+                  <div  class="col-md-8" >
+                    <h1 id ="heading" >Select any item </h1>
+                    <hr></hr>	
+					<canvas id="gui" width="500" height="200px"></canvas>
                   </div>
               </div>
           </div>
