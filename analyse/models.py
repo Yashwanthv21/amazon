@@ -59,6 +59,7 @@ class Amazon_Analyse(models.Model):
 				sent_pol.append( sid.polarity_scores(line)['compound'])
 			print res
 			xx = sum(1 for i in sent_pol if i>0)*1.0/len(sent_pol)
+			xx = round(xx,2) * 10
 			print xx
 			pic.append((res,xx)) 
 			#print sum(i for i in sent_pol )/len(sent_pol)
