@@ -38,6 +38,16 @@
                     <h1 id ="heading" >Select any item </h1>
                     <hr></hr>	
 					<canvas id="chart" width="500" height="200px"></canvas>
+
+					<div class="comments positive">
+					<ul id="positive-comments">
+					<!-- javascript prints comments here by parsing JSON obj -->
+					</ul>
+					</div>
+
+					<div class="comments negative">
+
+					</div>
                   </div>
               </div>
           </div>
@@ -50,6 +60,7 @@
 $(document).ready(function(){
 
 	radioButtonClickListener();
+	displayComments();
 });
 
 
@@ -103,6 +114,28 @@ function displayChart(value) {
         }]
 }
 });
+}
+function displayComments() {
+	
+	var obj = {{ comments|safe}};
+
+	for (var key in obj) {
+    	if (obj.hasOwnProperty(key)) {
+        	//console.log(obj[key]);
+        	var comments = obj[key];
+        //where to append lists	
+        var positiveComments = $('#positive-comments')
+
+        //appending loop
+		$.each(obj[key], function(i) {
+    	 
+    		var li = $('<li/>')
+        	.text(comments[i])
+        	.appendTo(positiveComments);
+
+		});	
+    }
+}
 }
 </script>
 
