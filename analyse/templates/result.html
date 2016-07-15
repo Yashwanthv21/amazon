@@ -28,19 +28,16 @@
               <div class="row">
                   <div class="col-md-4" >
                			<form action="form_action.asp">
-						{% for spec,sent in picc %}
-						<label><input type="radio" name="optradio" onclick = "myFunction()" value={{spec}} id = {{sent}}>  {{spec}}</label>
+						{% for spec,sent in data %}
+						<label><input type="radio" name="feature" value={{sent}} id={{spec}}>  {{spec}}</label>
 						<hr></hr>
-						{% endfor %}
-
-						
-						
+						{% endfor %}						
 						</form>
                   </div>
                   <div  class="col-md-8" >
                     <h1 id ="heading" >Select any item </h1>
                     <hr></hr>	
-					<canvas id="gui" width="500" height="200px"></canvas>
+					<canvas id="chart" width="500" height="200px"></canvas>
                   </div>
               </div>
           </div>
@@ -48,46 +45,64 @@
 
 
 <script>
-function myFunction() {
 
-    var coffee = document.forms[0];
-    
-    var i;
-    for (i = 0; i < coffee.length; i++) {
-        if (coffee[i].checked) {
-         	//document.getElementById("order").value = coffee[i].id
-         	document.getElementById("heading").innerHTML = coffee[i].value;
-         						
-			$("#gui").remove();
-			$(".col-md-8").append('<canvas id="gui" width="500" height="200px"></canvas>')
-			    
-			var value = coffee[i].id;
-			var ctx = $("#gui");
-			var myChart = new Chart(ctx, {
-			    type: 'doughnut',
-			    data : {
-			    labels: [
-			        "Positive",
-			        "Negative"
-			    ],
-			    datasets: [
-			        {
-			            data: [value, (10.0 - value).toFixed(1)],
-			            backgroundColor: [
-			                "#5cd65c",
-			                "#ff4d4d"
-			            ],
-			            hoverBackgroundColor: [
-			                "#2eb82e",
-			                "#ff1a1a"
-			            ]
-			        }]
-			}
-			});  
-        }
-    }
-    
+//when documnet is completely loaded load this scripts
+$(document).ready(function(){
 
+	radioButtonClickListener();
+});
+
+
+//global variables
+var myChart;
+
+function radioButtonClickListener() {
+
+	$('input[type=radio][name=feature]').change(function() {
+
+		var heading = $(this).attr("id");
+		var value = $(this).val();
+
+		//set chart heading
+		$("#heading").text(heading);
+
+		//load chart
+		displayChart(value);
+
+	});
+}
+
+function displayChart(value) {
+
+	//destroy existing chart if any and load new chart
+	if(myChart != null){					
+					
+		myChart.destroy();
+	}	
+
+	//creation of new chart
+	var ctx = $("#chart");
+	myChart = new Chart(ctx, {
+    type: 'doughnut',
+    data : {
+    labels: [
+        "Positive",
+        "Negative"
+    ],
+    datasets: [
+        {
+            data: [value, (10.0 - value).toFixed(1)],
+            backgroundColor: [
+                "#5cd65c",
+                "#ff4d4d"
+            ],
+            hoverBackgroundColor: [
+                "#2eb82e",
+                "#ff1a1a"
+            ]
+        }]
+}
+});
 }
 </script>
 

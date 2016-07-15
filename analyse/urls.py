@@ -17,5 +17,6 @@ from django.conf.urls import url
 from django.contrib import admin
 from .views import *
 urlpatterns = [
-	url(r'^sample/', analyse_data),
+	url(r'^data', analyse_data),
+	url(r'^list-all', analyse_data_list_all),
 ]

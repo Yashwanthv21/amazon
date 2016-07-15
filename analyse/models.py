@@ -20,7 +20,7 @@ class Amazon_Analyse(models.Model):
 		reload(sys)
 		sys.setdefaultencoding("utf-8")
 		path = os.getcwd()
-		m = Text(nltk.corpus.gutenberg.words(path + '/userReviews_micromax.txt'))
+		m = Text(nltk.corpus.gutenberg.words(path + '/userReviews1.txt'))
 
 		specs = ['camera','performance','battery','look','feel','money','sound','network','storage','software']
 
