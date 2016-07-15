@@ -8,6 +8,7 @@ from nltk.text import Text
 import sys
 import collections
 import io
+import os.path
 
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 # Create your models here.
@@ -24,9 +25,13 @@ class Amazon_Analyse(models.Model):
 
 		specs = ['camera','performance','battery','look','feel','money','sound','network','storage','software']
 
+
+		save_path = path + '/analyse/data'
+		 
 		for res in specs:
 
-			fileconcord = open(res+'.txt', 'w')
+			completeFileName = os.path.join(save_path, res+".txt")
+			fileconcord = open(completeFileName, 'w')
 			tmpout = sys.stdout
 			sys.stdout = fileconcord
 			m.concordance(res, 200, sys.maxint)
@@ -43,7 +48,8 @@ class Amazon_Analyse(models.Model):
 		#print sentimentfile
 		pic = []
 		for res in specs :
-			fileconcord  = open(res+'.txt','r')
+			completeFileName = os.path.join(save_path, res+".txt")
+			fileconcord  = open(completeFileName, 'r')
 			sent_pol = []
 			for line in fileconcord:
 				line = line.split()
