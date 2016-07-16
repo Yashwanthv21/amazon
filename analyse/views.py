@@ -17,7 +17,11 @@ def analyse_data(request):
 		for line in f:
 			title += line.strip()
 
-		return  render(request, 'result.html', {'data': data, 'comments': json.dumps(comments),'title':title})
+		#getting image data
+		imageFile = open("imageData.txt")
+		base64 = imageFile.readline()
+		base64 = base64[3:]
+		return  render(request, 'result.html', {'data': data, 'comments': json.dumps(comments),'title':title, 'image':base64})
 
 def analyse_data_list_all(request):
 	if request.method == 'GET':

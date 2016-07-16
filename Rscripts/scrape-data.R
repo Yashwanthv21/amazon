@@ -1,4 +1,6 @@
 library("rvest")
+library("methods")
+library("stringr")
 
 myArgs <- commandArgs(trailingOnly = TRUE)
 
@@ -9,8 +11,32 @@ productPage <- read_html(myArgs)
 #print(specs)
 #capture.output(productPage %>% html_node("#title_feature_div") %>% html_text(), file="product-title.txt", append=FALSE)
 
-#title <- productPage %>% html_node("#title_feature_div") %>% html_text()
-#print(title)
+#scrae title
+title <- NA 
+while(is.na(title)) {
+title <- productPage %>% html_node("#revMHLContainer h2") %>% html_text()
+print(title)
+}
+
+#write title
+#NOTE this file should already exist
+fileConn<-file("product-title.txt")
+writeLines(c(title), fileConn)
+close(fileConn)
+
+#scrape specifications
+# specifications <- productPage %>% html_node(xpath='//*[@id="prodDetails"]/div[2]/div[1]/div/div[2]/div/div/table') %>% html_table()
+# fileConn<-file("specifications.txt")
+# paste(c(specifications), fileConn)
+# close(fileConn)
+
+#scrape image
+image <- NA
+while(is.na(image)) {
+  image <- productPage %>% html_node("#landingImage") %>% html_attr("src") 
+    # image <-  sub('.', '', image)
+    capture.output(str_replace_all(image, "[\r\n]" , ""), file="imageData.txt", append=FALSE)
+}
 
 userReviewsPage <- productPage %>% html_nodes(".a-link-emphasis") %>% html_attr("href")
 #print(userReviewsPage[1])

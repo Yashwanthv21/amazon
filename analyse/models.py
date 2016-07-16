@@ -20,7 +20,7 @@ class Amazon_Analyse(models.Model):
 		#start = timeit.default_timer()
 		sid = SentimentIntensityAnalyzer()
 		reload(sys)
-		sys.setdefaultencoding("utf8")
+		sys.setdefaultencoding("utf-8")
 		path = os.getcwd()
 		m = Text(nltk.corpus.gutenberg.words(path + '/userReviews.txt'))
 

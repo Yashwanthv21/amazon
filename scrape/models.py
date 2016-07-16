@@ -2,6 +2,8 @@ from __future__ import unicode_literals
 
 from django.db import models
 import subprocess
+import os.path
+
 # Create your models here.
 class Amazon_Scrape(models.Model):
 	amazon_url = models.URLField(max_length=100)
@@ -11,7 +13,10 @@ class Amazon_Scrape(models.Model):
 
 		# Define command and arguments
 		command = 'Rscript'
-		path2script = 'specs-amazon.R'
+
+		path = os.getcwd()
+
+		path2script = path + '/Rscripts/' + 'scrape-data.R'
 
 		# Variable number of args in a list
 		args = [url]
