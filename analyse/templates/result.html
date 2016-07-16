@@ -6,7 +6,7 @@
           <meta name="viewport" content="width=device-width, initial-scale=1">
           <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
           <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-          <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+          <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
           <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script> 
           <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.6/Chart.bundle.min.js" ></script>
@@ -17,7 +17,7 @@
     width: 33.33333333%;
     border: 1px solid #e9e9e9;
     padding-top: 21px;
-    background-color: #3b5998;
+    background-color: #68b3bc;
     color: white;
 }
   .comments.positive {
@@ -152,21 +152,23 @@ function displayComments(heading) {
         //where to append lists	
         $("#pos").text("Positive Comments");
         $("#neg").text("Negative Comments");
+
         var positiveComments = $('#positive-comments')
-        $('#positive-comments').html("") ;
+        positiveComments.html("") ;
+
         var negativeComments = $('#negative-comments')
-        $('#negative-comments').html("") ;
+        negativeComments.html("") ;
+
         //appending loop
-        var i;
-        for(i = 0 ;i<5;i++)
+        for(var i = 0 ;i < 5;i++)
         {
           var li = $('<li/>')
           .text(comments[i][1])
           .appendTo(negativeComments);
           
-          var ii = comments.length - 1 - i;
+          var index = comments.length - 1 - i;
           var li = $('<li/>')
-          .text(comments[ii][1])
+          .text(comments[index][1])
           .appendTo(positiveComments);
         }
 
