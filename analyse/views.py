@@ -10,7 +10,7 @@ import json
 def analyse_data(request):
 	if request.method == 'GET':
 		q = Amazon_Analyse()
-		data= q.analyse_class()
+		data, comments= q.analyse_class()
 
 		#for testing display
 		dictionary = {
@@ -19,7 +19,12 @@ def analyse_data(request):
 				'look' : ['bad','good','worst'],
 				'design' : ['bad','good','worst']
 		}
-		return  render(request, 'result.html', {'data': data, 'comments': json.dumps(dictionary)})
+		f = open("product-title.txt")
+		title = ""
+		for line in f:
+			title += line.strip()
+
+		return  render(request, 'result.html', {'data': data, 'comments': json.dumps(comments),'title':title})
 
 def analyse_data_list_all(request):
 	if request.method == 'GET':

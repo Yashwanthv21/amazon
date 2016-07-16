@@ -12,41 +12,65 @@
           <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.6/Chart.bundle.min.js" ></script>
           
      <style type="text/css">
-     	.container
-     	{
-     		border-radius: 25px;
-		    border: 2px solid black;
-		    padding: 40px; 
-     	}
-
-
+     	
+        .col-md-4 {
+    width: 33.33333333%;
+    border: 1px solid #e9e9e9;
+    padding-top: 21px;
+    background-color: #3b5998;
+    color: white;
+}
+  .comments.positive {
+    border: 1px solid #e9e9e9;
+    background-color: #01FF70;
+    color: black;
+}
+  .comments.negative {
+    border: 1px solid #e9e9e9;
+    background-color: #FF4136 ;
+    color: antiquewhite;
+}
+  .chart{
+    border: 1px solid #e9e9e9;
+    background-color: white ;
+  }
      </style>
 </head>
 <body >
-		
+		<center><h1>{{title}}</h1></center>
+    <br>
 		<div class="container">
               <div class="row">
                   <div class="col-md-4" >
+                  
                			<form action="form_action.asp">
 						{% for spec,sent in data %}
 						<label><input type="radio" name="feature" value={{sent}} id={{spec}}>  {{spec}}</label>
-						<hr></hr>
+						<hr>
 						{% endfor %}						
 						</form>
+                  
                   </div>
                   <div  class="col-md-8" >
+                  <div class = "chart" >
                     <h1 id ="heading" >Select any item </h1>
-                    <hr></hr>	
+                    <br><br>
 					<canvas id="chart" width="500" height="200px"></canvas>
-
+          </div>
 					<div class="comments positive">
+          <h3 id = "pos"></h3>
+          <hr></hr>
 					<ul id="positive-comments">
 					<!-- javascript prints comments here by parsing JSON obj -->
 					</ul>
 					</div>
 
 					<div class="comments negative">
-
+          <h3 id ="neg"></h3>
+          <hr></hr>
+          <ul id="negative-comments">
+          <!-- javascript prints comments here by parsing JSON obj -->
+          </ul>
 					</div>
                   </div>
               </div>
@@ -60,7 +84,7 @@
 $(document).ready(function(){
 
 	radioButtonClickListener();
-	displayComments();
+	
 });
 
 
@@ -79,7 +103,7 @@ function radioButtonClickListener() {
 
 		//load chart
 		displayChart(value);
-
+    displayComments(heading);
 	});
 }
 
@@ -115,25 +139,41 @@ function displayChart(value) {
 }
 });
 }
-function displayComments() {
+function displayComments(heading) {
 	
 	var obj = {{ comments|safe}};
 
 	for (var key in obj) {
     	if (obj.hasOwnProperty(key)) {
-        	//console.log(obj[key]);
+        if(key == heading)
+        {
+          //console.log(obj[key]);
         	var comments = obj[key];
         //where to append lists	
+        $("#pos").text("Positive Comments");
+        $("#neg").text("Negative Comments");
         var positiveComments = $('#positive-comments')
-
+        $('#positive-comments').html("") ;
+        var negativeComments = $('#negative-comments')
+        $('#negative-comments').html("") ;
         //appending loop
-		$.each(obj[key], function(i) {
-    	 
-    		var li = $('<li/>')
-        	.text(comments[i])
-        	.appendTo(positiveComments);
+        var i;
+        for(i = 0 ;i<5;i++)
+        {
+          var li = $('<li/>')
+          .text(comments[i][1])
+          .appendTo(negativeComments);
+          
+          var ii = comments.length - 1 - i;
+          var li = $('<li/>')
+          .text(comments[ii][1])
+          .appendTo(positiveComments);
+        }
 
-		});	
+
+
+		
+  }
     }
 }
 }

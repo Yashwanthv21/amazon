@@ -7,14 +7,12 @@ productPage <- read_html(myArgs)
 #specs <- productPage %>% html_nodes(".col1 .label") %>% html_text()
 capture.output(productPage %>% html_nodes(".col1 .label") %>% html_text(), file="specs.txt",append=FALSE);
 #print(specs)
-capture.output(productPage %>% html_nodes("#productTitle") %>% html_text(), file="product-title.txt",append=FALSE);
-#print(specs)
 
 
 userReviewsPage <- productPage %>% html_nodes(".a-link-emphasis") %>% html_attr("href")
 #print(userReviewsPage[1])
 userReviewsPage = userReviewsPage[1]
-while (userReviewsPage != "http://www.amazon.in" && 0 ) { 
+while (userReviewsPage != "http://www.amazon.in" ) { 
 
 	allReviews <- read_html(userReviewsPage);
 	capture.output( allReviews %>%  html_nodes(".review-text")  %>%  html_text(),file="userReviews.txt", append=TRUE)

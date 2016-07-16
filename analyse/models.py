@@ -21,37 +21,29 @@ class Amazon_Analyse(models.Model):
 		reload(sys)
 		sys.setdefaultencoding("utf-8")
 		path = os.getcwd()
-		m = Text(nltk.corpus.gutenberg.words(path + '/userReviews1.txt'))
+		m = Text(nltk.corpus.gutenberg.words(path + '/userReviews.txt'))
 
 		specs = ['camera','performance','battery','look','feel','money','sound','network','storage','software']
 
 
-		save_path = path + '/analyse/data'
-		 
-		for res in specs:
-
-			completeFileName = os.path.join(save_path, res+".txt")
-			fileconcord = open(completeFileName, 'w')
-			tmpout = sys.stdout
-			sys.stdout = fileconcord
-			m.concordance(res, 200, sys.maxint)
-			fileconcord.close()
-			sys.stdout = tmpout
+		
 		
 		
 		file = open('sentimentwords.txt')
 
 		dictionary = collections.defaultdict(lambda : 0)
+		comments =  collections.defaultdict(lambda : [])
 		for token in file:
 			dictionary[token[:-1]] = 1
 		#print dictionary
 		#print sentimentfile
 		pic = []
 		for res in specs :
-			completeFileName = os.path.join(save_path, res+".txt")
-			fileconcord  = open(completeFileName, 'r')
+			#completeFileName = os.path.join(save_path, res+".txt")
+			fileconcord  = open(res+'.txt', 'r')
 			sent_pol = []
 			for line in fileconcord:
+				line1 = line[:]
 				line = line.split()
 				line_new=[]
 				#print line
@@ -63,6 +55,8 @@ class Amazon_Analyse(models.Model):
 				if res=='heat':
 					print line
 				sent_pol.append( sid.polarity_scores(line)['compound'])
+				comments[res].append((sid.polarity_scores(line)['compound'],line1))
+			comments[res].sort()
 			print res
 			xx = sum(1 for i in sent_pol if i>0)*1.0/len(sent_pol)
 			xx = round(xx,2) * 10
@@ -72,4 +66,4 @@ class Amazon_Analyse(models.Model):
 			#print sent_pol
 			print
 		
-		return pic
+		return pic,comments
