@@ -75,7 +75,11 @@ class Amazon_Analyse(models.Model):
 			print
 		
 		return data,comments
+
+
 	def Amazon_spec(self,tokenn):
+
+		
 		sid = SentimentIntensityAnalyzer()
 		reload(sys)
 		sys.setdefaultencoding("utf-8")

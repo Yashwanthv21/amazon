@@ -42,14 +42,14 @@
     <center><img id="product-image" src="" alt="image" /></center>
     <br>
     <div class="col-md-offset-2">
-    <form class="form-horizontal" id ="#FORM-ID" action="/analyse/newspec/" method="post">
+    <form class="form-horizontal" id ="custom-spec" action="/analyse/newspec/" method="post">
         {% csrf_token %}  
 
         <div class="form-group">
           {{form}}
         </div>
         <div class="form-group">
-        <button type="submit"  class="btn btn-primary col-md-offset-1">button</button>
+        <button type="submit"  id="custom-spec-btn" class="btn btn-primary col-md-offset-1">button</button>
         </div>
     </form>
     </div>
@@ -57,12 +57,10 @@
               <div class="row">
                   <div class="col-md-4" >
                   
-               			<form action="form_action.asp">
 						{% for spec,sent in data %}
 						<label><input type="radio" name="feature" value={{sent}} id={{spec}}>  {{spec}}</label>
 						<hr>
 						{% endfor %}						
-						</form>
                   
                   </div>
                   <div  class="col-md-8" >
@@ -96,31 +94,11 @@
 
 //when documnet is completely loaded load this scripts
 $(document).ready(function(){
-  e.preventDefault();
-  e.stopImmediatePropagation();
-  $("#FORM-ID").unbind('submit');
- return false;
-  var frm = $('#FORM-ID');
-    frm.submit(function () {
-        $.ajax({
 
-            type: frm.attr('method'),
-            url: frm.attr('action'),
-            dataType: "json",
-            data: frm.serialize(),
-            success: function (data) {
-                alert(data);
-
-            },
-            error: function(data) {
-              alert('failed');
-                
-            }
-        });
-        return false;
-    });
 	radioButtonClickListener();
   displayImage();
+  formSubmitListener();
+
 });
 
 
@@ -221,10 +199,33 @@ function displayImage(){
 }
 
 
-function displayComments_newspec(heading,obj) {
+/*function displayComments_newspec(heading,obj) {
   
   
 
+  e.preventDefault();
+  e.stopImmediatePropagation();
+  $("#FORM-ID").unbind('submit');
+ return false;
+  var frm = $('#FORM-ID');
+    frm.submit(function () {
+        $.ajax({
+
+            type: frm.attr('method'),
+            url: frm.attr('action'),
+            dataType: "json",
+            data: frm.serialize(),
+            success: function (data) {
+                alert(data);
+
+            },
+            error: function(data) {
+              alert('failed');
+                
+            }
+        });
+        return false;
+    });
   for (var key in obj) {
       if (obj.hasOwnProperty(key)) {
         if(key == heading)
@@ -257,6 +258,44 @@ function displayComments_newspec(heading,obj) {
   }
     }
 }
+}*/
+
+function formSubmitListener(){
+
+  $("#custom-spec").on("submit", function(e){
+
+    e.preventDefault();
+
+      var url = "/analyse/newspec/";
+
+            $.ajax({
+              type : 'POST',
+              url : url,
+              /*data : new FormData($(this)[0]),*/
+               data : $(this).serialize(), 
+              /* enctype : 'multipart/form-data', */
+              /* encoding : 'multipart/form-data', */
+              cache : false,
+              processData : false,
+              contentType : false,
+              beforeSend: function() {
+                $("#custom-spec-btn").prop('disabled', true);
+              },
+              success : function(response) {
+                var response = response;
+                $("#custom-spec-btn").prop('disabled', false);
+              },
+              error : function(XMLHttpRequest,
+                  textStatus, errorThrown) {                
+                /* console.info("Status: " + XMLHttpRequest);
+                alert("Status: " + textStatus);
+                alert("Error: " + errorThrown); */
+                alert("Error occured, try again.")
+                $("#custom-spec-btn").prop('disabled', false);
+              }
+            });
+
+  });
 }
 </script>
 
