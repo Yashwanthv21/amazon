@@ -6,7 +6,7 @@ from django.http import JsonResponse
 from .models import Amazon_Analyse
 from .forms import ScrapeForm
 import json
-
+import re
 # Create your views here.
 
 def analyse_data(request):
@@ -25,7 +25,17 @@ def analyse_data(request):
 		base64 = imageFile.readline()
 		base64 = base64[3:]
 		form = ScrapeForm()
-		return  render(request, 'result.html', {'data': data, 'comments': json.dumps(comments),'title':title, 'image':base64,'form':form})
+		specs_list = []
+		p = []
+		f = open('specs.txt')
+		for line in f:
+			print line
+			p.append(re.findall(r'"(.*?)"',line))
+		#print p
+		for i in xrange(0,len(p),2):
+			specs_list.append((p[i][0],p[i+1][0]))
+		print specs_list
+		return  render(request, 'result.html', {'data': data, 'comments': json.dumps(comments),'title':title, 'image':base64,'form':form,'specs_list':specs_list})
 	
 
 def analyse_data_list_all(request):
@@ -55,7 +65,7 @@ def analyse_newspec(request):
             data = json.dumps({
             	'heading': spec, 
             	'value': value,
-            	
+            	'comments_spec':comments,
             	})
             return JsonResponse(data,safe = False)
             print 'not sent'
