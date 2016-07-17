@@ -18,5 +18,6 @@ from django.contrib import admin
 from .views import *
 urlpatterns = [
 	url(r'^data', analyse_data),
+	url(r'^newspec', analyse_newspec),
 	url(r'^list-all', analyse_data_list_all),
 ]

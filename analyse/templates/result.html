@@ -41,6 +41,18 @@
 
     <center><img id="product-image" src="" alt="image" /></center>
     <br>
+    <div class="col-md-offset-2">
+    <form class="form-horizontal" id ="#FORM-ID" action="/analyse/newspec/" method="post">
+        {% csrf_token %}  
+
+        <div class="form-group">
+          {{form}}
+        </div>
+        <div class="form-group">
+        <button type="submit"  class="btn btn-primary col-md-offset-1">button</button>
+        </div>
+    </form>
+    </div>
 		<div class="container">
               <div class="row">
                   <div class="col-md-4" >
@@ -84,7 +96,29 @@
 
 //when documnet is completely loaded load this scripts
 $(document).ready(function(){
+  e.preventDefault();
+  e.stopImmediatePropagation();
+  $("#FORM-ID").unbind('submit');
+ return false;
+  var frm = $('#FORM-ID');
+    frm.submit(function () {
+        $.ajax({
 
+            type: frm.attr('method'),
+            url: frm.attr('action'),
+            dataType: "json",
+            data: frm.serialize(),
+            success: function (data) {
+                alert(data);
+
+            },
+            error: function(data) {
+              alert('failed');
+                
+            }
+        });
+        return false;
+    });
 	radioButtonClickListener();
   displayImage();
 });
@@ -184,6 +218,45 @@ function displayImage(){
   var image = {{image|safe}};
 
   $("#product-image").attr("src", image);
+}
+
+
+function displayComments_newspec(heading,obj) {
+  
+  
+
+  for (var key in obj) {
+      if (obj.hasOwnProperty(key)) {
+        if(key == heading)
+        {
+          //console.log(obj[key]);
+          var comments = obj[key];
+        //where to append lists 
+        $("#pos").text("Positive Comments");
+        $("#neg").text("Negative Comments");
+
+        var positiveComments = $('#positive-comments')
+        positiveComments.html("") ;
+
+        var negativeComments = $('#negative-comments')
+        negativeComments.html("") ;
+
+        //appending loop
+        for(var i = 0 ;i < 5;i++)
+        {
+          var li = $('<li/>')
+          .text(comments[i][1])
+          .appendTo(negativeComments);
+          
+          var index = comments.length - 1 - i;
+          var li = $('<li/>')
+          .text(comments[index][1])
+          .appendTo(positiveComments);
+        }
+    
+  }
+    }
+}
 }
 </script>
 
