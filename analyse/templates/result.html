@@ -26,19 +26,25 @@
     background-color: #68b3bc;
     color: white;
     border-radius: 15px;
-    padding-top: 150px;
 }
+#image{
+    padding-bottom: 100px;
+}
+  
+
   .comments.positive {
     border: 1px solid #e9e9e9;
     background-color: #BDF5A8;;
     color: black;
     border-radius: 25px;
 }
+
   .comments.negative {
     border: 1px solid #e9e9e9;
     background-color: #DE5252 ;
     color: antiquewhite;
     border-radius: 25px;
+    padding-bottom: 25px;
 }
   .chart{
     border: 1px solid #e9e9e9;
@@ -59,17 +65,18 @@ h1,h3 {
     margin-left: 7px;
     width: 100%;
     display: none;
+
 }
      </style>
 </head>
-<body >
+<body style="background-color: #F9F9F9;">
 		<center id = "cen"><h1>{{title}}</h1></center>
     <br>
     <div class="container">
       <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-4" id = "image">
         
-          <center><img id="product-image" src="" alt="image" /></center>
+          <center><img id="product-image" src="" alt="image" style="background-color: #F9F9F9;" /></center>
         </div>
         <div class="col-md-8">
           <table class="table table-bordered">
@@ -308,6 +315,14 @@ function formSubmitListener(){
   });
 }
 </script>
-
+<style type="text/css">
+  .comments.negative {
+    border: 1px solid #e9e9e9;
+    background-color: #DE5252 ;
+    color: antiquewhite;
+    border-radius: 25px;
+    padding-bottom: 25px;
+}
+</style>
 </body>
 </html>
