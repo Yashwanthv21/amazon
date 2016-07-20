@@ -10,11 +10,13 @@ import collections
 import io
 import os.path
 from nltk.tokenize import sent_tokenize
+from nltk.tokenize import word_tokenize
 
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 # Create your models here.
 
 class Amazon_Analyse(models.Model):
+	
 	def analyse_class(self):
 		
 		#start = timeit.default_timer()

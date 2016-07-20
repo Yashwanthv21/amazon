@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'scrape',
     'analyse',
+    'home',
 ]
 
 MIDDLEWARE_CLASSES = [

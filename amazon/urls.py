@@ -20,4 +20,5 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^scrape/', include('scrape.urls')),
 url(r'^analyse/', include('analyse.urls')),
+url(r'^home/', include('home.urls')),
 ]
