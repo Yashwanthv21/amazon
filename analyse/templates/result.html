@@ -15,7 +15,17 @@
      
 </head>
 <body style="background-color: #F9F9F9;">
-		<center id = "cen"><h1>{{title}}</h1></center>
+<div>
+<h1>FIXED NAVBAR</h1>
+</div>
+  <nav class="navbar navbar-inverse navbar-fixed-top" id = "cen" >
+  <div class="container">
+  <div class="navbar-header">
+		<center><h1>{{title}}</h1></center>
+    </div>
+    </div>
+    </nav>
+   
     <br>
     <div class="container">
       <div class="row">
@@ -66,8 +76,9 @@
                   </div>
                   <div  class="col-md-8" >
                   <div class = "chart" >
-                    <h1 id ="heading" >Select any item </h1>
-                    <br>
+                  <div><h1 id ="heading" >Select any item </h1></div>
+                    
+                    <hr>
 					<canvas id="chart" width="500" height="200px"></canvas>
           </div>
           <br><br>

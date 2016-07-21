@@ -24,7 +24,7 @@ class Amazon_Analyse(models.Model):
 		reload(sys)
 		sys.setdefaultencoding("utf-8")
 		path = os.getcwd()
-		m = Text(nltk.corpus.gutenberg.words(path + '/userReviews_mac.txt'))
+		m = Text(nltk.corpus.gutenberg.words(path + '/userReviews.txt'))
 
 		specs = ['camera','performance','battery','look','feel','money','sound','network','storage','software']
 
@@ -36,7 +36,7 @@ class Amazon_Analyse(models.Model):
 			specFile = open(completeFileName, 'w')
 			tmpout = sys.stdout
 			sys.stdout = specFile
-			m.concordance(spec, 200, sys.maxint)
+			m.concordance(spec, 50, sys.maxint)
 			specFile.close()
 			sys.stdout = tmpout		
 		
