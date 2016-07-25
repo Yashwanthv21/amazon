@@ -10,7 +10,7 @@ productPage <- read_html(myArgs)
 #capture.output(productPage %>% html_nodes(".col1 .label") %>% html_text(), file="specs.txt",append=FALSE);
 #print(specs)
 #capture.output(productPage %>% html_node("#title_feature_div") %>% html_text(), file="product-title.txt", append=FALSE)
-capture.output(productPage %>% html_nodes(".col1 .label") %>% html_text(), file="specs.txt",append=FALSE);
+capture.output(productPage %>% html_nodes(".col1 td") %>% html_text(), file="specs.txt",append=FALSE);
 
 
 #scrae title

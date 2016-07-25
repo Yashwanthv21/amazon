@@ -5,7 +5,7 @@
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
-<ul class="nav nav-pills">
+<!-- <ul class="nav nav-pills">
   <li role="presentation" class="active"><a href="#">Home</a></li>
   <li role="presentation"><a href="#">Profile</a></li>
   <li role="presentation"><a href="#">Messages</a></li>
@@ -19,8 +19,13 @@
   <p class="lead">
     <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
   </p>
-</div>
-
+</div> -->
+<div class="panel panel-default">
+                        <div class="panel-heading">
+                            Enter the URL of product to be analysed
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
 <div class="col-md-offset-3">
 <form class="form-horizontal" action="/scrape/data/" method="post">
 	{% csrf_token %}	
@@ -33,3 +38,4 @@
 	</div>
 </form>
 </div>
+</div></div></div>
