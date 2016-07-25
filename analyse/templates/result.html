@@ -256,6 +256,10 @@ function formSubmitListener(){
                 $("#heading").text(heading);
                 displayChart(response.value);
                 displayComments(heading)
+
+                var hrtag = "<hr/>";
+                $(label).after(hrtag);  
+
                 $("#custom-spec-btn").prop('disabled', false);
                 radioButtonClickListener();
 
