@@ -26,3 +26,6 @@ The architecture of the project is
 ## Results
 The final results are
 ![Alt text](images/results.png?raw=true "Results")
+
+## Conclusion
+![Alt text](images/conclusion.png?raw=true "Conclusion")
