@@ -3,7 +3,7 @@ Sentiment Analysis on Amazon user reviews.
 
 ## What is Sentiment Analysis?
 
-![Alt text](images/sentiment Analysis.png?raw=true "Sentiment Analysis")
+![Alt text](images/sa.png?raw=true "Sentiment Analysis")
 
 ## Existing System
 The existing system shows top positive and negative reviews, but these are of overall product. We still need to search for the specific feature we are looking for in the product, for example, if we are looking for a mobile which has good camera, but the mobile is rated bad due to its battery problem. There is no simple way to identify this, unless we manually read the reviews.
