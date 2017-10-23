@@ -3,3 +3,6 @@
 
 # Omit .txt files
 *.txt
+
+# Omit images
+*.jpg
