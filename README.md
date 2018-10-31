@@ -4,7 +4,7 @@ Sentiment Analysis on Amazon user reviews.
 ## Usage
 1. create a virtual environment
 2. Install packages using requirements.txt 
-3. Go to python Console
+3. Go to python Console `import nltk`
 4. `nltk.download('vader_lexicon')`
 5. `nltk.download('gutenberg')`
 6. Install R 
