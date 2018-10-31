@@ -18,7 +18,7 @@ Sentiment Analysis on Amazon user reviews.
 14. To view past result go to http://127.0.0.1:8000/analyse/data/
 
 ## Current Issues
-This code is written to scrape the reviews from Amazon product pages. The scrape code no longer works, maybe due to change in Website, you need to fix this to make this project fully working.
+The R code is written to scrape the reviews from Amazon product pages. The scrape code no longer works, maybe due to change in Website, you need to fix this to make this project fully working.
 
 To test this quickly, delete the contents in the userReviews.txt and paste few reviews into userReviews.txt in similar format as before.
 
