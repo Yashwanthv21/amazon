@@ -1,5 +1,8 @@
 # To omit .pyc files
 *.pyc
 
+# venv
+venv/
+
 # Omit images
 *.jpg
