@@ -1,8 +1,5 @@
 # To omit .pyc files
 *.pyc
 
-# Omit .txt files
-*.txt
-
 # Omit images
 *.jpg
