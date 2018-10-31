@@ -14,8 +14,8 @@ Sentiment Analysis on Amazon user reviews.
 10. `install.packages('rvest')`
 11. If installation fails try `sudo apt-get install libxml2-dev`
 12. Now start app using `python manage.py runserver`
-13. go to http://127.0.0.1:8000/scrape/data/ (Check Issues below if this fails)
-14. To view past result go to http://127.0.0.1:8000/analyse/data/
+13. To view past result go to http://127.0.0.1:8000/analyse/data/
+14. go to http://127.0.0.1:8000/scrape/data/ (Check Issues below if this fails)
 
 ## Current Issues
 The R code is written to scrape the reviews from Amazon product pages. The scrape code no longer works, maybe due to change in Website, you need to fix this to make this project fully working.
